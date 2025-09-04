@@ -6,10 +6,12 @@
 		<groupId>com.cisco.LogsMonitoringApp</groupId>
 		<artifactId>LogsMonitoringApp</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		
 	</parent>
 	<groupId>com.cisco.demp</groupId>
 	<artifactId>logcreator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>logcreator</name>
 	<description>logcreator project for Spring Boot</description>
 	
@@ -46,5 +48,45 @@
 			</plugin>
 		</plugins>
 	</build>
+	<build>
+        <plugins>
+            <!-- Compiler plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+ 
+            <!-- Package as fat JAR with dependencies -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.cisco.demp.demo.MainApp</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
 
 </project>
